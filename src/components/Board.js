@@ -24,9 +24,10 @@ const EmptyBoard = styled.div`
   background-color: #cfcfc4;
 `;
 
-const Board = ({ player, turn }) => {
+const Board = ({ player }) => {
   const cells = useSelector((state) => state.board[player].cells);
   const pickedCells = useSelector((state) => state.board.pickedCells);
+  const turn = useSelector((state) => state.option.turn);
   const dispatch = useDispatch();
   const pickCell = (number) => {
     dispatch(pick(number));

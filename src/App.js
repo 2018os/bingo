@@ -14,7 +14,6 @@ const BoardWrapper = styled.div`
 const App = () => {
   const [isFirst, setIsFirst] = useState(true);
   const dispatch = useDispatch();
-  const turn = useSelector((state) => state.option.turn);
   const player1Score = useSelector((state) => state.board.player1.score);
   const player2Score = useSelector((state) => state.board.player2.score);
   const run = () => {
@@ -44,8 +43,8 @@ const App = () => {
   return (
     <>
       <BoardWrapper>
-        <Board player="player1" turn={turn} />
-        <Board player="player2" turn={turn} />
+        <Board player="player1" />
+        <Board player="player2" />
       </BoardWrapper>
       <button onClick={run}>{isFirst ? "게임 시작" : "게임 재시작"}</button>
       <button
