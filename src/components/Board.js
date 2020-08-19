@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 
 import { checkBingo, pick } from "../slices/boardSlice";
@@ -7,14 +7,18 @@ import { setTurn } from "../slices/optionSlice";
 
 import Cell from "../styles/Cell";
 
+const Spacing = css`
+  margin: 50px;
+`;
+
 const PlayerBoard = styled.div`
+  ${Spacing};
   display: grid;
-  width: 500px;
-  padding: 50px;
   grid-template-columns: repeat(5, 1fr);
 `;
 
 const EmptyBoard = styled.div`
+  ${Spacing};
   width: 500px;
   height: 500px;
   background-color: #cfcfc4;
