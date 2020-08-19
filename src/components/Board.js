@@ -29,27 +29,23 @@ const Board = ({ player, turn }) => {
     dispatch(checkBingo());
     dispatch(setTurn(player === "player1" ? "player2" : "player1"));
   };
-  return (
+  return cells.length > 0 ? (
     <PlayerBoard>
-      {cells.length > 0 ? (
-        cells.map((cellNumber) => (
-          <Cell
-            picked={pickedCells.includes(cellNumber)}
-            key={`cell-${cellNumber}`}
-            onClick={() =>
-              player === turn
-                ? pickCell(cellNumber)
-                : alert("잘못된 차레입니다.")
-            }
-            disabled={pickedCells.includes(cellNumber)}
-          >
-            {cellNumber}
-          </Cell>
-        ))
-      ) : (
-        <EmptyBoard />
-      )}
+      {cells.map((cellNumber) => (
+        <Cell
+          picked={pickedCells.includes(cellNumber)}
+          key={`cell-${cellNumber}`}
+          onClick={() =>
+            player === turn ? pickCell(cellNumber) : alert("잘못된 차레입니다.")
+          }
+          disabled={pickedCells.includes(cellNumber)}
+        >
+          {cellNumber}
+        </Cell>
+      ))}
     </PlayerBoard>
+  ) : (
+    <EmptyBoard />
   );
 };
 
