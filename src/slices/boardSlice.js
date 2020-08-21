@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { eventLines } from "../lib/index";
+import { EVENTLINES } from "../lib/index";
 
 function shuffle() {
   // fisher-yates shuffle
@@ -14,7 +14,7 @@ function shuffle() {
 
 function getScore(pickedCells) {
   let score = 0;
-  eventLines.forEach((line) => {
+  EVENTLINES.forEach((line) => {
     const isCorrect = line.every((number) => pickedCells.includes(number));
     if (isCorrect) score++;
   });
