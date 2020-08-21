@@ -7,6 +7,8 @@ import { setTurn } from "../slices/optionSlice";
 
 import Cell from "../styles/Cell";
 
+import { SIZE } from "../lib/index";
+
 const Spacing = css`
   margin: 50px;
 `;
@@ -14,13 +16,15 @@ const Spacing = css`
 const PlayerBoard = styled.div`
   ${Spacing};
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(${(props) => props.size}, 1fr);
 `;
 
 const EmptyBoard = styled.div`
   ${Spacing};
-  width: 500px;
-  height: 500px;
+  ${(props) => `
+    width: ${props.size * 100}px;
+    height: ${props.size * 100}px;
+  `}
   background-color: #cfcfc4;
 `;
 
@@ -39,7 +43,7 @@ const Board = ({ player }) => {
     }
   };
   return cells.length > 0 ? (
-    <PlayerBoard>
+    <PlayerBoard size={SIZE}>
       {cells.map((cellNumber) => (
         <Cell
           key={`cell-${cellNumber}`}
@@ -51,7 +55,7 @@ const Board = ({ player }) => {
       ))}
     </PlayerBoard>
   ) : (
-    <EmptyBoard />
+    <EmptyBoard size={SIZE} />
   );
 };
 

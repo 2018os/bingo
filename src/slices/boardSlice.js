@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { EVENTLINES } from "../lib/index";
+import { EVENTLINES, SIZE } from "../lib/index";
 
 function shuffle() {
   // fisher-yates shuffle
-  const array = Array.from(Array(25), (_, i) => i + 1); // 1 to 25
+  const array = Array.from(Array(SIZE * SIZE), (_, i) => i + 1);
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
@@ -72,7 +72,7 @@ export const { checkBingo, pick, setGame, init } = boardSlice.actions;
 
 export const draw = () => (dispatch) => {
   // for test
-  const array = Array.from(Array(25), (_, i) => i + 1);
+  const array = Array.from(Array(SIZE * SIZE), (_, i) => i + 1);
   array.forEach((number) => {
     dispatch(pick(number));
     dispatch(checkBingo());
